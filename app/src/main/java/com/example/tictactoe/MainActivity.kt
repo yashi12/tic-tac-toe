@@ -12,11 +12,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var boad_status = Array(3) { IntArray(3) }
     lateinit var board: Array<Array<Button>>
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("choose","-1")
         super.onCreate(savedInstanceState)
-        Log.d("choose","-2")
         setContentView(R.layout.activity_main)
-    //    Log.d("choose","0")
         board = arrayOf(
             arrayOf(id_button1, id_button2, id_button3),
             arrayOf(id_button4, id_button5, id_button6),
@@ -24,9 +21,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
         resetboard()
         Log.d("choose","1")
-     //   initializeboard()
+        initializeboard()
         Log.d("choose","2")
-     //   chooseplayer()
+        chooseplayer()
         Log.d("choose","3")
         for (i in board) {
             for (button in i) {

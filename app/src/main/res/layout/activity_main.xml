@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="7"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,15 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:weightSum="2">
 
         <ImageView
             android:id="@+id/id_left_player"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/goldenYellow"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+            android:src="@android:drawable/ic_menu_myplaces"
+             />
 
         <ImageView
             android:id="@+id/id_right_player"
@@ -30,16 +30,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_light"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+            android:src="@android:drawable/ic_menu_myplaces" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/id_player_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
 
         <Button
@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?android:attr/textColorHighlight"
-            android:backgroundTint="@android:color/secondary_text_dark"
+            android:background="@android:color/white"
+
             android:text="PLAYER 1"
             android:textColor="@color/goldenYellow" />
 
@@ -59,8 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?android:attr/textColorHighlightInverse"
-            android:backgroundTint="@android:color/secondary_text_dark"
+            android:background="@android:color/white"
+
             android:text="PLAYER 2"
             android:textColor="@color/goldenYellow" />
 
@@ -70,8 +70,7 @@
         android:id="@+id/id_win_game_icon"
         style="@style/margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_height="20dp"
         android:orientation="horizontal">
 
 
@@ -80,36 +79,26 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="180dp"
-            app:srcCompat="@android:drawable/presence_online" />
+            android:src="@android:drawable/presence_online" />
 
         <ImageView
             android:id="@+id/id_circle2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/presence_online" />
+            android:src="@android:drawable/presence_online" />
 
         <ImageView
             android:id="@+id/id_circle3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/presence_online" />
+            android:src="@android:drawable/presence_online" />
 
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="vertical"
-        android:weightSum="3"
-        app:layout_constraintTop_toBottomOf="@+id/id_player_name">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
+            android:layout_height="70dp"
+            >
             <Button
                 android:id="@+id/id_button1"
                 style="@style/marginsmall"
@@ -125,8 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/background_dark"
-                android:backgroundTint="?attr/colorControlHighlight" />
+                android:background="@android:color/background_light" />
 
             <Button
                 android:id="@+id/id_button3"
@@ -135,13 +123,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/background_dark"
-                android:backgroundTint="@android:color/secondary_text_dark" />
+                android:backgroundTint="@android:color/secondary_text_dark"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            >
 
             <Button
                 android:id="@+id/id_button4"
@@ -174,7 +162,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/id_button7"
@@ -204,7 +192,6 @@
                 android:backgroundTint="@android:color/secondary_text_dark" />
         </LinearLayout>
 
-    </LinearLayout>
 
     <Button
         android:id="@+id/id_reset"
