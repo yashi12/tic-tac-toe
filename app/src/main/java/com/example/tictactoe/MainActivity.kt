@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var num_turns = 0
-    var display=""
+    var display="X"
     var boad_status = Array(3) { IntArray(3) }
     lateinit var board: Array<Array<Button>>
     override fun onCreate(savedInstanceState: Bundle?) {
