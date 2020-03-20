@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var num_turns = 0
+    var display=""
     var boad_status = Array(3) { IntArray(3) }
     lateinit var board: Array<Array<Button>>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +20,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             arrayOf(id_button4, id_button5, id_button6),
             arrayOf(id_button7, id_button8, id_button9)
         )
-        resetboard()
-        Log.d("choose","1")
         initializeboard()
-        Log.d("choose","2")
         chooseplayer()
-        Log.d("choose","3")
+        resetboard()
         for (i in board) {
             for (button in i) {
                 button.setOnClickListener(this)
@@ -33,8 +31,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun chooseplayer() {
-        id_left_player.setOnClickListener(this)
-        id_right_player.setOnClickListener(this)
+        id_left_player.setOnClickListener(){
+            num_turns = 1
+            display="X"
+            id_left_player.isEnabled = false
+            id_right_player.isEnabled = false
+            id_display.text="Player $display turn"
+        }
+        id_right_player.setOnClickListener{
+            num_turns = 0
+            display="O"
+            id_left_player.isEnabled = false
+            id_right_player.isEnabled = false
+            id_display.text="Player $display turn"
+        }
+
     }
 
     private fun initializeboard() {
@@ -47,6 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         id_left_player.isEnabled = true
         id_right_player.isEnabled = true
+        id_display.text="Lets Start!! X or O which one first"
     }
     private fun resetboard(){
         id_reset.setOnClickListener {
@@ -84,27 +96,79 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 boardApply(2, 2)
             }
             id_left_player -> {
-                num_turns = 1
-                id_left_player.isEnabled = false
-                id_right_player.isEnabled = false
+
             }
             id_right_player->{
-                num_turns = 0
-                id_left_player.isEnabled = false
-                id_right_player.isEnabled = false
+
             }
         }
+        if(num_turns>=5){
+            var flag=0
+            var diag=0
+            var seconddiag=0
+            var ddisplay="X"
+            if(display=="X")
+                ddisplay="O"
+            for(i in 0..2){
+                var count=0
+                for(j in 0..2){
+                    if(board[i][j].text==ddisplay){
+                        count++
+                    }
+                    if(i==j && board[i][j].text==ddisplay){
+                        diag++
+                    }
+                    if(i+j==2 && board[i][j].text==ddisplay){
+                        seconddiag++
+                    }
+                }
+                if(count==3 || diag==3 ||seconddiag==3){
+                    display=ddisplay
+                    win()
+                    flag
+                }
+            }
+            if(flag==0) {
+                for (i in 0..2) {
+                    var count = 0
+                    for (j in 0..2) {
+                        if (board[j][i].text == ddisplay) {
+                            count++
+                        }
+                    }
+                    if (count == 3) {
+                        display=ddisplay
+                        win()
+                    }
+                }
+            }
+        }
+        if(num_turns==9){
+            id_display.text="DRAW!!"
+        }
+    }
+    private fun win(){
+        for(i in 0..2){
+            for(j in 0..2){
+                board[i][j].isEnabled=false
+            }
+        }
+        id_display.text="Player $display won!!"
     }
     private fun boardApply(row:Int,col:Int){
-        if(num_turns%2!=0){
+        board[row][col].text=display
+        if(display=="X"){
+            display="O"
             boad_status[row][col]=0
-            board[row][col].text="0"
-        }else{
-            boad_status[row][col]=1
-            board[row][col].text="+"
         }
+        else {
+            display="X"
+            boad_status[row][col]=1
+        }
+        id_display.text="Player $display turn"
         board[row][col].isEnabled=false
         num_turns++
+
     }
 }
 
